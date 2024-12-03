@@ -1,27 +1,20 @@
 <?php
-include 'verifica_sessao.php'; // Inclui a verificação da sessão
-include 'conexao.php'; // Inclui a conexão com o banco de dados
+include 'verifica_sessao.php';
+include 'conexao.php';
 
-// Verifica se o usuário está logado
-if (!isset($_SESSION['cod_usuario'])) {
-    echo "<script>alert('Você não está logado!');</script>";
-    echo "<script>location.href='index.php';</script>";
-    exit;
-}
-
-// Verifica se a função do usuário é "Administrador" ou "Vendedor"
+// Verifica se o usuário tem permissão de administrador ou vendedor
 if ($_SESSION['funcao_usuario'] !== 'Administrador' && $_SESSION['funcao_usuario'] !== 'Vendedor') {
-    echo "<script>alert('Acesso negado! Somente administradores e vendedores podem acessar esta página.');</script>";
+    echo "<script>alert('Acesso negado! Apenas administradores ou vendedores podem acessar esta página.');</script>";
     echo "<script>location.href='administracao.php';</script>";
     exit;
 }
 
-// Consulta para buscar os clientes
+// Obter clientes para exibir no select
 $sql_clientes = "SELECT Cod_cliente, Nome FROM cliente";
 $result_clientes = mysqli_query($conectar, $sql_clientes);
 
-// Consulta para buscar as motos
-$sql_motos = "SELECT Cod_moto, Modelo FROM moto WHERE Status_de_disponibilidade = 'Disponível'";
+// Obter motos disponíveis para exibir no select
+$sql_motos = "SELECT Cod_moto, Modelo, Preco_de_venda FROM moto WHERE Status_de_disponibilidade = 'Disponível'";
 $result_motos = mysqli_query($conectar, $sql_motos);
 ?>
 
@@ -32,24 +25,21 @@ $result_motos = mysqli_query($conectar, $sql_motos);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Venda</title>
     <link rel="stylesheet" type="text/css" href="css/layout.css">
-    <link rel="stylesheet" type="text/css" href="css/menu.css">
 </head>
 <body>
-<div id="principal">
-        <!-- Topo -->
+    <div id="principal">
+        <!-- Cabeçalho -->
         <div id="topo">
             <div id="logo">
                 <h1>Loja de Motos</h1>
             </div>
             <div id="menu_global">
-   				 <!-- Saudação ao usuário -->
-   				 <p>Olá, <?php echo isset($_SESSION['nome_usuario']) && !empty($_SESSION['nome_usuario']) ? $_SESSION['nome_usuario'] : 'Usuário'; ?></p>
-    				<!-- Inclusão do menu -->
-    				<?php include 'menu_local.php'; ?>
-			</div>
+                <p>Olá, <?php echo isset($_SESSION['nome_usuario']) ? $_SESSION['nome_usuario'] : 'Usuário'; ?></p>
+                <?php include 'menu_local.php'; ?>
+            </div>
         </div>
 
-        <!-- Conteúdo Específico -->
+        <!-- Conteúdo -->
         <div id="conteudo_especifico">
             <h1>Registro de Venda</h1>
             <form action="processa_registro_venda.php" method="post">
@@ -59,15 +49,9 @@ $result_motos = mysqli_query($conectar, $sql_motos);
                         <td>
                             <select name="cliente" id="cliente" required>
                                 <option value="">Selecione um cliente</option>
-                                <?php
-                                if ($result_clientes && mysqli_num_rows($result_clientes) > 0) {
-                                    while ($cliente = mysqli_fetch_assoc($result_clientes)) {
-                                        echo "<option value='{$cliente['Cod_cliente']}'>{$cliente['Nome']}</option>";
-                                    }
-                                } else {
-                                    echo "<option value=''>Nenhum cliente encontrado</option>";
-                                }
-                                ?>
+                                <?php while ($cliente = mysqli_fetch_assoc($result_clientes)): ?>
+                                    <option value="<?php echo $cliente['Cod_cliente']; ?>"><?php echo $cliente['Nome']; ?></option>
+                                <?php endwhile; ?>
                             </select>
                         </td>
                     </tr>
@@ -76,33 +60,24 @@ $result_motos = mysqli_query($conectar, $sql_motos);
                         <td>
                             <select name="moto" id="moto" required>
                                 <option value="">Selecione uma moto</option>
-                                <?php
-                                if ($result_motos && mysqli_num_rows($result_motos) > 0) {
-                                    while ($moto = mysqli_fetch_assoc($result_motos)) {
-                                        echo "<option value='{$moto['Cod_moto']}'> - R$ {$moto['Modelo']}</option>";
-                                    }
-                                } else {
-                                    echo "<option value=''>Nenhuma moto disponível</option>";
-                                }
-                                ?>
+                                <?php while ($moto = mysqli_fetch_assoc($result_motos)): ?>
+                                    <option value="<?php echo $moto['Cod_moto']; ?>"><?php echo $moto['Modelo'] . " - R$ " . $moto['Preco_de_venda']; ?></option>
+                                <?php endwhile; ?>
                             </select>
                         </td>
                     </tr>
                     <tr>
-     <td><label for="valor_total">Valor Total:</label></td>
-    <td>
-        <span>R$ </span>
-        <input type="number" name="valor_total" id="valor_total" required>
-    </td>
-</tr>
-<tr>
-    <td><label for="valor_entrada">Valor de Entrada:</label></td>
-    <td>
-        <span>R$ </span>
-        <input type="number" name="valor_entrada" id="valor_entrada">
-    </td>
-</tr>
-
+                        <td><label for="responsavel_venda">Responsável pela Venda:</label></td>
+                        <td><input type="text" name="responsavel_venda" id="responsavel_venda" value="<?php echo $_SESSION['nome_usuario']; ?>" readonly></td>
+                    </tr>
+                    <tr>
+                        <td><label for="valor_total">Valor Total:</label></td>
+                        <td><input type="number" name="valor_total" id="valor_total" required readonly></td>
+                    </tr>
+                    <tr>
+                        <td><label for="valor_entrada">Valor de Entrada:</label></td>
+                        <td><input type="number" name="valor_entrada" id="valor_entrada"></td>
+                    </tr>
                     <tr>
                         <td><label for="forma_pagamento">Forma de Pagamento:</label></td>
                         <td>
@@ -127,10 +102,17 @@ $result_motos = mysqli_query($conectar, $sql_motos);
 
         <!-- Rodapé -->
         <div id="rodape">
-            <div id="texto_institucional">
-                <h6>Loja de Motos - Endereço: Rua das Motos, 123 - E-mail: suporte@lojademotos.com - Fone: (61) 9966-6677</h6>
-            </div>
+            <p>Loja de Motos - Endereço: Rua das Motos, 123 - E-mail: suporte@lojademos.com - Fone: (61) 9966-6677</p>
         </div>
     </div>
+
+    <!-- Script para atualizar valor total ao selecionar moto -->
+    <script>
+        document.getElementById('moto').addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const motoPreco = selectedOption.text.split(" - R$ ")[1];
+            document.getElementById('valor_total').value = motoPreco || '';
+        });
+    </script>
 </body>
 </html>
