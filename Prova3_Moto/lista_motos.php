@@ -39,17 +39,18 @@ $result = mysqli_query($conectar, $query);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($moto = mysqli_fetch_assoc($result)): ?>
-                        <tr>
-                            <td><?php echo $moto['Cod_moto']; ?></td>
-                            <td><?php echo $moto['Marca']; ?></td>
-                            <td><?php echo $moto['Modelo']; ?></td>
-                            <td><?php echo $moto['Preco_de_venda']; ?></td>
-                            <td><?php echo $moto['Quantidade_em_estoque']; ?></td>
-                            <td><?php echo $moto['Status_de_disponibilidade']; ?></td>
-                        </tr>
-                    <?php endwhile; ?>
-                </tbody>
+    <?php while ($moto = mysqli_fetch_assoc($result)): ?>
+        <tr>
+            <td><?php echo $moto['Cod_moto']; ?></td>
+            <td><?php echo $moto['Marca']; ?></td>
+            <td><?php echo $moto['Modelo']; ?></td>
+            <td><?php echo "R$ " . $moto['Preco_de_venda']; ?></td>
+            <td><?php echo $moto['Quantidade_em_estoque']; ?></td>
+            <td><?php echo $moto['Status_de_disponibilidade']; ?></td>
+        </tr>
+    <?php endwhile; ?>
+</tbody>
+
             </table>
         </div>
         <div id="rodape">

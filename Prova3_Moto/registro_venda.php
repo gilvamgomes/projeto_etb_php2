@@ -79,7 +79,7 @@ $result_motos = mysqli_query($conectar, $sql_motos);
                                 <?php
                                 if ($result_motos && mysqli_num_rows($result_motos) > 0) {
                                     while ($moto = mysqli_fetch_assoc($result_motos)) {
-                                        echo "<option value='{$moto['Cod_moto']}'>{$moto['Modelo']}</option>";
+                                        echo "<option value='{$moto['Cod_moto']}'> - R$ {$moto['Modelo']}</option>";
                                     }
                                 } else {
                                     echo "<option value=''>Nenhuma moto disponível</option>";
@@ -89,13 +89,20 @@ $result_motos = mysqli_query($conectar, $sql_motos);
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="valor_total">Valor Total:</label></td>
-                        <td><input type="number" name="valor_total" id="valor_total" required></td>
-                    </tr>
-                    <tr>
-                        <td><label for="valor_entrada">Valor de Entrada:</label></td>
-                        <td><input type="number" name="valor_entrada" id="valor_entrada"></td>
-                    </tr>
+     <td><label for="valor_total">Valor Total:</label></td>
+    <td>
+        <span>R$ </span>
+        <input type="number" name="valor_total" id="valor_total" required>
+    </td>
+</tr>
+<tr>
+    <td><label for="valor_entrada">Valor de Entrada:</label></td>
+    <td>
+        <span>R$ </span>
+        <input type="number" name="valor_entrada" id="valor_entrada">
+    </td>
+</tr>
+
                     <tr>
                         <td><label for="forma_pagamento">Forma de Pagamento:</label></td>
                         <td>

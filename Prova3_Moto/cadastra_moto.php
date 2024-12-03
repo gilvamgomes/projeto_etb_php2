@@ -35,8 +35,8 @@ include 'conexao.php'; // Inclui a conexão com o banco de dados
                 <p><label for="numero_chassi">Número do Chassi:</label> <input type="text" name="numero_chassi" id="numero_chassi" required></p>
                 <p><label for="cilindrada">Cilindrada:</label> <input type="text" name="cilindrada" id="cilindrada"></p>
                 <p><label for="tipo">Tipo:</label> <input type="text" name="tipo" id="tipo"></p>
-                <p><label for="preco_custo">Preço de Custo:</label> <input type="text" name="preco_custo" id="preco_custo"></p>
-                <p><label for="preco_venda">Preço de Venda:</label> <input type="text" name="preco_venda" id="preco_venda" required></p>
+                <p><label for="preco_custo">Preço de Custo R$:</label> <input type="text" name="preco_custo" id="preco_custo"></p>
+                <p><label for="preco_venda">Preço de Venda R$:</label> <input type="text" name="preco_venda" id="preco_venda" required></p>
                 <p><label for="quantidade_em_estoque">Quantidade em Estoque:</label> <input type="number" name="quantidade_em_estoque" id="quantidade_em_estoque"></p>
                 <p><label for="tipo_de_combustivel">Tipo de Combustível:</label> <input type="text" name="tipo_de_combustivel" id="tipo_de_combustivel"></p>
                 <p><label for="potencia">Potência:</label> <input type="text" name="potencia" id="potencia"></p>
