@@ -13,7 +13,7 @@
         <div id="principal">
 			<div id="topo">
 				<div id="logo">
-					<h1> Loja de Motos </h1>
+					<h1> MULTI MOTOS </h1>
 				</div>
 			</div>
 			<div id="conteudo_especifico">
@@ -38,8 +38,8 @@
 			<div id="rodape">
 				<div id="texto_institucional">
 					<div id="texto_institucional">
-						<h6> Loja de Motos </h6> 
-						<h6> Rua das Motos, 123 -- E-mail: suporte@lojademos.com -- Fone: (61) 9966-6677 </h6> 
+						<h6> MULTI MOTOS </h6> 
+						<h6> Rua das Motos, 123 -- E-mail: suporte@multimotos.com -- Fone: (61) 9966-6677 </h6> 
 					</div> 
 				</div>
 		</div>

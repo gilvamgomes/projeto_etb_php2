@@ -14,7 +14,7 @@ include 'verifica_sessao.php';
     <div id="principal">
         <div id="topo">
             <div id="logo">
-                <h1>Loja de Motos</h1>
+            <h1> MULTI MOTOS </h1>
             </div>
             <div id="menu_global">
                 <p>Olá, <?php echo isset($_SESSION['nome_usuario']) ? $_SESSION['nome_usuario'] : 'Usuário'; ?></p>
@@ -59,7 +59,7 @@ include 'verifica_sessao.php';
 
         </div>
         <div id="rodape">
-            <p>Loja de Motos - Endereço: Rua das Motos, 123 - E-mail: suporte@lojademos.com - Fone: (61) 9966-6677</p>
+            <p>MULTI MOTOS - Endereço: Rua das Motos, 123 - E-mail: suporte@multimotos.com - Fone: (61) 9966-6677</p>
         </div>
     </div>
 </body>
