@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'conexao.php'; 
 
 // Conexão com o banco de dados
 $conectar = mysqli_connect("localhost", "root", "", "moto");
@@ -28,7 +29,7 @@ $linhas = mysqli_num_rows($resultado_consulta);
 if ($linhas == 1) {
     $registro = mysqli_fetch_assoc($resultado_consulta);
     $_SESSION['cod_usuario'] = $registro['Cod_Fun'];
-    $_SESSION['nome_usuario'] = $registro['Nome']; //Difinir nome do usuario
+    $_SESSION['nome_usuario'] = $registro['Nome']; //Difinir nome do Usuario
     $_SESSION['funcao_usuario'] = $registro['Funcao'];
 
     echo "<script>location.href='administracao.php'</script>";
