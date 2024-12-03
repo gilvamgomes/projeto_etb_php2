@@ -19,6 +19,32 @@ if (!$result) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatório de Estoque</title>
     <link rel="stylesheet" href="css/layout.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            text-align: left;
+        }
+        th, td {
+            padding: 6px 8px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .compact-table td {
+            padding: 4px 6px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <div id="principal">
@@ -36,28 +62,28 @@ if (!$result) {
         <!-- Conteúdo -->
         <div id="conteudo_especifico">
             <h1>Relatório de Estoque</h1>
-            <table border="1" width="100%">
+            <table class="compact-table">
                 <thead>
                     <tr>
                         <th>Código</th>
                         <th>Marca</th>
                         <th>Modelo</th>
-                        <th>Ano de Fabricação</th>
+                        <th>Ano</th>
                         <th>Cor</th>
-                        <th>Número do Chassi</th>
+                        <th>Chassi</th>
                         <th>Cilindrada</th>
                         <th>Tipo</th>
-                        <th>Preço de Custo</th>
-                        <th>Preço de Venda</th>
-                        <th>Quantidade em Estoque</th>
-                        <th>Tipo de Combustível</th>
+                        <th>Custo</th>
+                        <th>Venda</th>
+                        <th>Estoque</th>
+                        <th>Combustível</th>
                         <th>Potência</th>
-                        <th>Sistema de Freios</th>
+                        <th>Freios</th>
                         <th>ABS</th>
                         <th>Peso</th>
-                        <th>Capacidade do Tanque</th>
-                        <th>Tipo de Partida</th>
-                        <th>Status de Disponibilidade</th>
+                        <th>Tanque</th>
+                        <th>Partida</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,17 +95,17 @@ if (!$result) {
                             <td><?php echo $moto['Ano_de_fabricacao']; ?></td>
                             <td><?php echo $moto['Cor']; ?></td>
                             <td><?php echo $moto['Numero_do_chassi']; ?></td>
-                            <td><?php echo $moto['Cilindrada']; ?></td>
+                            <td><?php echo $moto['Cilindrada']; ?> cc</td>
                             <td><?php echo $moto['Tipo']; ?></td>
                             <td>R$ <?php echo number_format($moto['Preco_de_custo'], 2, ',', '.'); ?></td>
                             <td>R$ <?php echo number_format($moto['Preco_de_venda'], 2, ',', '.'); ?></td>
                             <td><?php echo $moto['Quantidade_em_estoque']; ?></td>
                             <td><?php echo $moto['Tipo_de_combustivel']; ?></td>
-                            <td><?php echo $moto['Potencia']; ?></td>
+                            <td><?php echo $moto['Potencia']; ?> HP</td>
                             <td><?php echo $moto['Sistema_de_freios']; ?></td>
-                            <td><?php echo $moto['Abs']; ?></td>
-                            <td><?php echo $moto['Peso']; ?></td>
-                            <td><?php echo $moto['Capacidade_do_tanque']; ?></td>
+                            <td><?php echo $moto['Abs'] === '1' ? 'Sim' : 'Não'; ?></td>
+                            <td><?php echo $moto['Peso']; ?> kg</td>
+                            <td><?php echo $moto['Capacidade_do_tanque']; ?> L</td>
                             <td><?php echo $moto['Tipo_de_partida']; ?></td>
                             <td><?php echo $moto['Status_de_disponibilidade']; ?></td>
                         </tr>
