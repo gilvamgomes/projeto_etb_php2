@@ -13,12 +13,13 @@ $email = $_POST['email'];
 $login = $_POST['login'];
 $senha = $_POST['senha'];
 $funcao = $_POST['funcao'];
+$status = $_POST['status']; // Novo campo para o status
 
 // Verificar se os campos estão preenchidos
 if (
     empty($nome) || empty($cpf) || empty($rg) || empty($nascimento) ||
     empty($endereco) || empty($telefone) || empty($email) ||
-    empty($login) || empty($senha) || empty($funcao)
+    empty($login) || empty($senha) || empty($funcao) || empty($status)
 ) {
     echo "<script>alert('Todos os campos devem ser preenchidos!');</script>";
     echo "<script>location.href='cadastra_funcionario.php';</script>";
@@ -29,7 +30,7 @@ if (
 $sql = "INSERT INTO funcionarios 
         (Nome, Cpf, Rg, Nascimento, Endereco, Telefone, Email, Login, Senha, Funcao, Status, Admissao) 
         VALUES 
-        ('$nome', '$cpf', '$rg', '$nascimento', '$endereco', '$telefone', '$email', '$login', '$senha', '$funcao', 'ATIVADO', NOW())";
+        ('$nome', '$cpf', '$rg', '$nascimento', '$endereco', '$telefone', '$email', '$login', '$senha', '$funcao', '$status', NOW())";
 
 if (mysqli_query($conectar, $sql)) {
     echo "<script>alert('Funcionário cadastrado com sucesso!');</script>";
