@@ -1,22 +1,53 @@
-﻿
 /* menu_global */
-
+.menu_global {
+    padding: 10px 0;
+    text-align: center;
+    background: linear-gradient(to right, #1a1a1a, #2d2d2d);
+    border-radius: 8px;
+}
 
 .menu_global li {
     display: inline-flex;
-    margin: 10px;
-	
+    margin: 10px 20px;
+    position: relative;
 }
 
 .menu_global a {
     text-decoration: none;
-    color: black;
+    color: #ffffff;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 5px 10px;
+    position: relative;
+}
+
+.menu_global a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #ff0000;
+    transition: width 0.3s ease;
 }
 
 .menu_global a:hover {
-    color: red;
-    transition: ease 0.5s;
+    color: #ff0000;
+    transition: color 0.3s ease;
 }
 
+.menu_global a:hover::after {
+    width: 100%;
+}
 
+/* Efeito adicional para item ativo do menu (opcional) */
+.menu_global a.active {
+    color: #ff0000;
+}
 
+.menu_global a.active::after {
+    width: 100%;
+}
