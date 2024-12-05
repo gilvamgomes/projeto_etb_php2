@@ -173,3 +173,101 @@ form input[type="submit"]:hover {
 #logo h1:hover {
     animation: revEngine 0.1s ease-in-out infinite;
 }
+
+/* Estilo para o formulário */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #111;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Estilo para os inputs */
+form input[type="text"],
+form input[type="password"],
+form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 1em;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #222;
+    color: white;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus {
+    border-color: #e60000;
+    outline: none;
+}
+
+/* Estilo para o botão */
+form button {
+    background-color: #e60000;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+form button:hover {
+    background-color: #ff1a1a;
+    transition: 0.3s;
+}
+
+/* Estilização para centralizar o formulário */
+#conteudo_especifico {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 70vh; /* Garante que o formulário fique centralizado verticalmente */
+    margin: 0 auto;
+}
+
+form {
+    width: 100%;
+    max-width: 600px; /* Define uma largura máxima para o formulário */
+    background-color: #000; /* Cor de fundo do formulário */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 10px; /* Arredondamento dos cantos */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra para destaque */
+}
+
+form p {
+    margin: 10px 0; /* Espaçamento entre os campos */
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-bottom: 5px;
+    color: #fff; /* Cor do texto */
+    font-size: 14px;
+}
+
+form input,
+form select,
+form button {
+    width: 100%; /* Largura total */
+    padding: 10px; /* Espaçamento interno dos campos */
+    margin-bottom: 15px; /* Espaçamento inferior entre os campos */
+    border: 1px solid #ccc; /* Bordas */
+    border-radius: 5px; /* Bordas arredondadas */
+    box-sizing: border-box;
+}
+
+form button {
+    background-color: red; /* Cor do botão */
+    color: #fff; /* Cor do texto */
+    font-size: 16px; /* Tamanho da fonte */
+    cursor: pointer; /* Cursor ao passar o mouse */
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: darkred; /* Cor ao passar o mouse */
+}
