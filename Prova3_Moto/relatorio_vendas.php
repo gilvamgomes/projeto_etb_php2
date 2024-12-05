@@ -2,17 +2,14 @@
 include 'verifica_sessao.php';
 include 'conexao.php';
 
+// Consulta para buscar os produtos vendidos
 $sql_consulta_vendas = "
     SELECT v.Cod_Venda, v.Data, v.Hora, v.Responsavel_pela_venda, v.Valor_total, v.Forma_de_pagamento, 
-           m.Modelo AS Moto, c.Nome AS Cliente, f.Nome AS Funcionario
+           m.Modelo AS Moto, c.Nome AS Cliente
     FROM venda v
     INNER JOIN moto m ON v.Cod_moto = m.Cod_moto
-    INNER JOIN clientes c ON v.Cod_cliente = c.Cod_cliente
-    INNER JOIN funcionarios f ON v.Cod_funcionario = f.Cod_funcionario
+    INNER JOIN cliente c ON v.Cod_cliente = c.Cod_cliente
 ";
-
-
-// Executando a consulta
 $result = mysqli_query($conectar, $sql_consulta_vendas);
 
 // Verifica se a consulta foi bem-sucedida
