@@ -1,38 +1,39 @@
 <?php
-session_start();
-include 'verifica_sessao.php';
-include 'conexao.php';
 
-// Receber dados do formulário
+include 'verifica_sessao.php';
+include 'conexao.php'; // Conexão com o banco de dados
+
+var_dump($_POST); // Para ver se os dados estão sendo passados corretamente
+exit;
+
+// Recuperar os dados enviados do formulário
 $cliente = $_POST['cliente'];
 $moto = $_POST['moto'];
 $valor_total = $_POST['valor_total'];
 $valor_entrada = $_POST['valor_entrada'];
 $forma_pagamento = $_POST['forma_pagamento'];
 $num_parcelas = $_POST['num_parcelas'];
-$funcionario = $_SESSION['cod_usuario']; // Funcionário que está realizando a venda
-$nome_funcionario = $_SESSION['nome_usuario']; // Nome do funcionário (responsável pela venda)
-$data = date('Y-m-d');
-$hora = date('H:i:s');
 
-// Verificar se todos os campos obrigatórios estão preenchidos
+// Verificar se os campos obrigatórios foram preenchidos
 if (empty($cliente) || empty($moto) || empty($valor_total) || empty($forma_pagamento)) {
     echo "<script>alert('Todos os campos obrigatórios devem ser preenchidos!');</script>";
-    echo "<script>location.href='registro_venda.php';</script>";
+    echo "<script>location.href='registra_venda.php';</script>";
     exit;
 }
 
-// Inserir a venda no banco de dados
-$sql = "INSERT INTO venda (Data, Hora, Cod_cliente, Cod_moto, Cod_fun, Responsavel_pela_venda, Valor_total_venda, Valor_de_entrada, Forma_de_pagamento, Numero_de_parcelas, Status_da_venda) 
-        VALUES ('$data', '$hora', '$cliente', '$moto', '$funcionario', '$nome_funcionario', '$valor_total', '$valor_entrada', '$forma_pagamento', '$num_parcelas', 'Concluída')";
+// Adicionar a data e hora atuais
+$data = date('Y-m-d');
+$hora = date('H:i:s');
+
+// Inserir os dados na tabela `venda`
+$sql = "INSERT INTO venda (Data, Hora, Valor_total, Valor_entrada, Forma_de_pagamento, Num_parcelas, Cod_cliente, Cod_moto, Cod_funcionario) 
+        VALUES ('$data', '$hora', '$valor_total', '$valor_entrada', '$forma_pagamento', '$num_parcelas', '$cliente', '$moto', '{$_SESSION['cod_usuario']}')";
 
 if (mysqli_query($conectar, $sql)) {
     echo "<script>alert('Venda registrada com sucesso!');</script>";
-    echo "<script>location.href='administracao.php';</script>";
+    echo "<script>location.href='relatorio_vendas.php';</script>";
 } else {
-    echo "Erro ao registrar a venda: " . mysqli_error($conectar);
+    echo "Erro ao registrar venda: " . mysqli_error($conectar);
 }
 
-// Fechar conexão
-mysqli_close($conectar);
 ?>
