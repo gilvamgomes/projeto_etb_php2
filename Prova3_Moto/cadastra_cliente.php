@@ -35,9 +35,9 @@ include 'verifica_sessao.php'; // Verifica se o usuário está logado
             <form action="processa_cadastra_cliente.php" method="post">
                 <table>
                     <tr>
-                        <td><label for="nome">Nome:</label></td>
+                        <td><label for="nome">Nome:</label></td><br>
                         <td><input type="text" name="nome" id="nome" required></td>
-                    </tr>
+                    </tr><br>
                     <tr>
                         <td><label for="cpf">CPF:</label></td>
                         <td><input type="text" name="cpf" id="cpf" required></td>
