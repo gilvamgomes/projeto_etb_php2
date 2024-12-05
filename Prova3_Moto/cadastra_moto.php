@@ -11,6 +11,7 @@ include 'conexao.php'; // Inclui a conexão com o banco de dados
     <title>Cadastrar Moto</title>
     <link rel="stylesheet" href="css/layout.css">
     <style>
+        /* Estilos gerais para o formulário */
         .form-container {
             max-width: 600px;
             margin: 0 auto;
@@ -30,6 +31,7 @@ include 'conexao.php'; // Inclui a conexão com o banco de dados
             display: block;
             margin-bottom: 5px;
             color: #fff;
+            font-size: 14px;
         }
 
         .form-container input, 
@@ -40,6 +42,7 @@ include 'conexao.php'; // Inclui a conexão com o banco de dados
             margin-bottom: 15px;
             border: 1px solid #ddd;
             border-radius: 5px;
+            box-sizing: border-box;
         }
 
         .form-container button {
@@ -71,7 +74,7 @@ include 'conexao.php'; // Inclui a conexão com o banco de dados
 
         <!-- Conteúdo -->
         <div id="conteudo_especifico">
-            <div class="form-container">
+            
                 <h1>Cadastro de Moto</h1>
                 <form action="processa_cadastra_moto.php" method="post">
                     <label for="marca">Marca:</label>
@@ -133,7 +136,7 @@ include 'conexao.php'; // Inclui a conexão com o banco de dados
 
                     <button type="submit">Cadastrar Moto</button>
                 </form>
-            </div>
+            
         </div>
 
         <!-- Rodapé -->
