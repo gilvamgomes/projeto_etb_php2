@@ -2,7 +2,6 @@
 include 'verifica_sessao.php';
 include 'conexao.php';
 
-// Consulta para listar todas as motos
 $query = "SELECT * FROM moto";
 $result = mysqli_query($conectar, $query);
 
@@ -16,7 +15,7 @@ if (!$result) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Motos</title>
+    <title>Lista de Motos - MULTI MOTOS</title>
     <link rel="stylesheet" href="css/layout.css">
 </head>
 <body>
@@ -54,6 +53,7 @@ if (!$result) {
                             <th>Capacidade do Tanque</th>
                             <th>Partida</th>
                             <th>Status</th>
+                            <th>Ações</th> <!-- Nova coluna para ações -->
                         </tr>
                     </thead>
                     <tbody>
@@ -72,11 +72,14 @@ if (!$result) {
                                 <td><?php echo $moto['Tipo_de_combustivel']; ?></td>
                                 <td><?php echo $moto['Potencia']; ?></td>
                                 <td><?php echo $moto['Sistema_de_freios']; ?></td>
-                                <td><?php echo $moto['Abs']; ?></td>
+                                <td><?php echo $moto['Abs'] ? 'Sim' : 'Não'; ?></td>
                                 <td><?php echo $moto['Peso']; ?></td>
                                 <td><?php echo $moto['Capacidade_do_tanque']; ?></td>
                                 <td><?php echo $moto['Tipo_de_partida']; ?></td>
                                 <td><?php echo $moto['Status_de_disponibilidade']; ?></td>
+                                <td>
+                                    <a href="edita_moto.php?cod_moto=<?php echo $moto['Cod_moto']; ?>">Editar</a>
+                                </td>
                             </tr>
                         <?php endwhile; ?>
                     </tbody>
@@ -93,6 +96,5 @@ if (!$result) {
 </html>
 
 <?php
-// Fechar a conexão com o banco
 mysqli_close($conectar);
 ?>
